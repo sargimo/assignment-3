@@ -8,25 +8,25 @@
         </div>
         <div class="category music-venues">
             <div class="cat-title">
-                <h3>MUSIC VENUES</h3>
+                <h3>MUSIC <br>VENUES</h3>
                 <p>LIVE WEEKEND MUSIC VENUES</p> 
             </div>
         </div>
         <div class="category record-stores">
             <div class="cat-title">
-                <h3>RECORD STORES</h3>
+                <h3>RECORD <br>STORES</h3>
                 <p>VINYL, CDS AND EVERYTHING INBETWEEN</p> 
             </div>
         </div>
         <div class="category music-shops">
             <div class="cat-title">
-                <h3>MUSIC SHOPS</h3>
+                <h3>MUSIC <br>SHOPS</h3>
                 <p>FOR ALL YOUR MUSICAL NEEDS</p> 
             </div>
         </div>
         <div class="category music-schools">
             <div class="cat-title">
-                <h3>MUSIC SCHOOLS</h3>
+                <h3>MUSIC <br>SCHOOLS</h3>
                 <p>LEARN FROM THE BEST</p> 
             </div>
         </div>
@@ -51,60 +51,75 @@ export default {
 
 .festivals {
     transition: all 0.5s linear;
+    background-color: gray;
+    background-blend-mode: luminosity;
+    background-image: url(../../assets/geoff/category-festivals.jpg);
+    background-position: 30% 0%;
 }
 
-.festivals::before {
-    background-image: url(../../assets/geoff/category-festivals.jpg);
-    filter: grayscale(100%);
-}
 
 .festivals:hover {
     transition: all 0.5s linear;
-    filter: grayscale(0%);
+    background-color: transparent;
+    background-blend-mode: normal;
 }
 
 .music-venues {
     background-image: url(../../assets/geoff/category-music-venues.jpg);
-    filter: grayscale(100%);
+    background-color: gray;
+    background-blend-mode: luminosity;
     transition: all 0.5s linear;
+    background-position: 40% 100%;
 }
 
 .music-venues:hover {
     transition: all 0.5s linear;
-    filter: grayscale(0%);
+    background-color: transparent;
+    background-blend-mode: normal;
 }
 
 .record-stores {
     background-image: url(../../assets/geoff/category-record.jpg);
-    filter: grayscale(100%);
+    background-color: gray;
+    background-blend-mode: luminosity;
+    background-size: cover;
     transition: all 0.5s linear;
+    background-position: 59% 20%;
 }
 
 .record-stores:hover {
     transition: all 0.5s linear;
-    filter: grayscale(0%);
+    background-color: transparent;
+    background-blend-mode: normal;
 }
 
 .music-shops {
     background-image: url(../../assets/geoff/category-music-shop.jpg);
-    filter: grayscale(100%);
+    background-color: gray;
+    background-blend-mode: luminosity;
     transition: all 0.5s linear;
+    background-position: 43% 10%;
 }
 
 .music-shops:hover {
     transition: all 0.5s linear;
-    filter: grayscale(0%);
+    background-color: transparent;
+    background-blend-mode: normal;
 }
 
 .music-schools {
     background-image: url(../../assets/geoff/category-music-schools.jpg);
-    filter: grayscale(100%);
+    background-color: gray;
+    background-blend-mode: luminosity;
     transition: all 0.5s linear;
+    background-position: 10% 0%;
+
 }
 
 .music-schools:hover {
     transition: all 0.5s linear;
-    filter: grayscale(0%);
+    background-color: transparent;
+    background-blend-mode: normal;
 }
 
 .category {
@@ -121,16 +136,19 @@ export default {
     min-width: 10%;
 }
 
-.category::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;      
-      background-position: center bottom;
-      background-size: cover;
-      z-index: -1;
+.category:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+}
+
+.category:hover:before {
+    transition: all 0.5s linear;
+    background: none;
 }
 
 .category:hover {
@@ -140,13 +158,19 @@ export default {
     cursor: pointer;
 }
 
-/* .title{
-    margin: 0 auto;
-} */
+.category:hover .cat-title{
+    transition: all 0.3s linear;
+    transform: translateY(-50px)
+}
+
+.cat-title {
+    transition: all 0.3s linear;
+    position: relative;
+    z-index: 1;
+}
 
 .cat-title p {
     color: #ffe96b;
-    filter: grayscale(0%) !important;
 }
 
 .cat-title h3 {
