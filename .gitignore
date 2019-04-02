@@ -1,6 +1,3 @@
 node_modules 
-src/components/geoff/constants/config.js
-**/apikey
-**/safetydance
-src.components.geoff.constants.safetydancetwosrc/components/Geoff/constants/safetydancetwo.js
+
 src/components/Geoff/constants/safetydancetwo.js
