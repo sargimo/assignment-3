@@ -1,3 +1,2 @@
 node_modules 
-
-src/components/Geoff/constants/safetydancetwo.js
+src/components/Geoff/constants/config.js
