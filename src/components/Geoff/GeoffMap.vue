@@ -1,14 +1,22 @@
 <template>
-  <GeoffMapLoader :mapConfig="mapConfig" />
+<div>
+    <GeoffMapLoader :mapConfig="mapConfig" />
+    <GeoffMapCategories />
+    <GeoffPlaceInformation />
+</div>
 </template>
 
 <script>
 import GeoffMapLoader from "./GeoffMapLoader.vue";
+import GeoffMapCategories from "./GeoffMapCategories.vue"
+import GeoffPlaceInformation from "./GeoffPlaceInformation.vue"
 import { mapSettings } from "./constants/mapSettings.js";
 
 export default {
   components: {
-    GeoffMapLoader
+    GeoffMapLoader,
+    GeoffMapCategories,
+    GeoffPlaceInformation
   },
 //   data: function(){
 //       return {
