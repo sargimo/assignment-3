@@ -19,7 +19,7 @@
                         </select>
                     </div>
                     <div class="col-2">
-                        <button class="category-btn">MUSIC VENUES</button>
+                        <button @click.prevent="musicVenuesHandler" id="4bf58dd8d48988d1e5931735" class="category-btn">MUSIC VENUES</button>
                     </div>
                     <div class="col-2">
                         <button class="category-btn active">RECORD STORES</button>
@@ -39,11 +39,16 @@
 <script>
 export default {
   name: "GeoffMapCategories",
-  components: {}
+
+  methods: {
+      musicVenuesHandler: function(evt){
+        this.$emit("$musicVenueHandler", evt.target.id);
+      }
+  }
 };
 </script>
 
-<style>
+<style scoped>
 .filters-container {
     max-width: 75%;
     margin: 0 auto;

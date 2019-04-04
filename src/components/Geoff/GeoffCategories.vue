@@ -1,36 +1,38 @@
-<template>
-    <div class="categories-container">
-        <div class="category festivals">
-            <div class="cat-title">
-                <h3>FESTIVALS</h3>
-                <p>THE BIGGEST EVENTS IN WELLINGTON</p> 
+<template>        
+    <transition name="page-fade-in" mode="out-in">
+        <div class="categories-container">
+            <div class="category festivals">
+                <div class="cat-title">
+                    <h3>FESTIVALS</h3>
+                    <p>THE BIGGEST EVENTS IN WELLINGTON</p> 
+                </div>
+            </div>
+            <div class="category music-venues">
+                <div class="cat-title">
+                    <h3>MUSIC <br>VENUES</h3>
+                    <p>LIVE WEEKEND MUSIC VENUES</p> 
+                </div>
+            </div>
+            <div class="category record-stores">
+                <div class="cat-title">
+                    <h3>RECORD <br>STORES</h3>
+                    <p>VINYL, CDS AND EVERYTHING INBETWEEN</p> 
+                </div>
+            </div>
+            <div class="category music-shops">
+                <div class="cat-title">
+                    <h3>MUSIC <br>SHOPS</h3>
+                    <p>FOR ALL YOUR MUSICAL NEEDS</p> 
+                </div>
+            </div>
+            <div class="category music-schools">
+                <div class="cat-title">
+                    <h3>MUSIC <br>SCHOOLS</h3>
+                    <p>LEARN FROM THE BEST</p> 
+                </div>
             </div>
         </div>
-        <div class="category music-venues">
-            <div class="cat-title">
-                <h3>MUSIC <br>VENUES</h3>
-                <p>LIVE WEEKEND MUSIC VENUES</p> 
-            </div>
-        </div>
-        <div class="category record-stores">
-            <div class="cat-title">
-                <h3>RECORD <br>STORES</h3>
-                <p>VINYL, CDS AND EVERYTHING INBETWEEN</p> 
-            </div>
-        </div>
-        <div class="category music-shops">
-            <div class="cat-title">
-                <h3>MUSIC <br>SHOPS</h3>
-                <p>FOR ALL YOUR MUSICAL NEEDS</p> 
-            </div>
-        </div>
-        <div class="category music-schools">
-            <div class="cat-title">
-                <h3>MUSIC <br>SCHOOLS</h3>
-                <p>LEARN FROM THE BEST</p> 
-            </div>
-        </div>
-    </div>
+    </transition>
     
 </template>
 
@@ -41,12 +43,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .categories-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+}
+
+.page-fade-in-enter-active, .page-fade-in-leave-active, {
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.page-fade-in-enter, .page-fade-in-leave-to {
+    opacity: 0;
 }
 
 .festivals {
