@@ -7,8 +7,10 @@
       <div class="title">
         <h1 class="title-top">WELLINGTON</h1>
         <h2 class="sub-title">THE NAME OF THIS</h2>
-        <div class="flex-center"> 
-          <router-link :to="'/GeoffCategories'" exact><button class="btn-yellow">GET STARTED</button></router-link>
+        <div class="flex-center">
+          <router-link :to="'/GeoffCategories'" exact>
+            <button class="btn-yellow">GET STARTED</button>
+          </router-link>
         </div>
       </div>
     </div>

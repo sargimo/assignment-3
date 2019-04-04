@@ -1,7 +1,7 @@
 <template>
-<div>
-    <GeoffMapLoader :mapConfig="mapConfig" />
-</div>
+  <div>
+    <GeoffMapLoader :mapConfig="mapConfig"/>
+  </div>
 </template>
 
 <script>
@@ -10,13 +10,13 @@ import { mapSettings } from "./constants/mapSettings.js";
 
 export default {
   components: {
-    GeoffMapLoader,
+    GeoffMapLoader
   },
-//   data: function(){
-//       return {
-//           API_KEY: API_KEY
-//       }
-//   },
+  //   data: function(){
+  //       return {
+  //           API_KEY: API_KEY
+  //       }
+  //   },
   computed: {
     mapConfig() {
       return {

@@ -1,26 +1,26 @@
 <template>
   <div>
-    <GeoffMapCategories @$musicVenueHandler="musicVenueHandler"/>
-    <GeoffPlaceInformation />
-    <div
-      class="google-map"
-      ref="googleMap"
-    ></div>
+    <GeoffMapCategories
+      @$categoryClickHandler="categoryClickHandler"
+      @$radiusChanged="radiusChanged"
+    />
+    <GeoffPlaceInformation/>
+    <div class="google-map" ref="googleMap"></div>
     <template v-if="Boolean(this.google) && Boolean(this.map)">
-      <slot
-        :google="google"
-        :map="map"
-      />
+      <slot :google="google" :map="map"/>
     </template>
-        <button @click="addMarkers([{position: {lat: -41.2855, lng: 174.7772}}, {position: {lat: -41.2875, lng: 174.7742}}, {position: {lat: -41.2871, lng: 174.7779}}])">add</button>
-        <button @click="deleteMarkers()">delete</button>
-
+    <button
+      @click="addMarkers([{position: {lat: -41.2855, lng: 174.7772}}, {position: {lat: -41.2875, lng: 174.7742}}, {position: {lat: -41.2871, lng: 174.7779}}])"
+    >add</button>
+    <button @click="deleteMarkers()">delete</button>
   </div>
 </template>
 
 <script>
 import GoogleMapsApiLoader from "google-maps-api-loader";
 import { API_KEY } from "./constants/config.js";
+import { CLIENT_ID } from "./constants/config.js";
+import { CLIENT_SECRET } from "./constants/config.js";
 import GeoffMapCategories from "./GeoffMapCategories.vue";
 import GeoffPlaceInformation from "./GeoffPlaceInformation.vue";
 
@@ -40,7 +40,13 @@ export default {
       google: null,
       map: null,
       apiKey: API_KEY,
-      markers: []
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      markers: [],
+      currentRadius: "1000",
+      currentCategoryId: Number,
+      currentCategoryName: "",
+      currentSearchData: []
     };
   },
 
@@ -80,24 +86,71 @@ export default {
       });
       gMarkers = [];
     },
-    initMarkerClickListeners(markers){
+    initMarkerClickListeners(markers) {
       let myMap = this.map;
-      let gMarkers = this.markers;
-      let gMap = this.google.maps;
-      $.each(markers, function (i, marker) {
-        marker.addListener('click', function(evt){
+      let that = this;
+      // let gMarkers = this.markers;
+      // let gMap = this.google.maps;
+      $.each(markers, function(i, marker) {
+        marker.addListener("click", function() {
           myMap.setZoom(15);
           myMap.setCenter(marker.getPosition());
-          console.log("id = " + marker.id + ". name = " + marker.name + ". description = " + marker.description);
+          that.getPlaceDetails(marker.id);
         });
       });
     },
-    musicVenueHandler: function(id) {
-      this.addMarkers([
-        { position: { lat: -41.2855, lng: 174.7772 }, id: 1, name: "Marker 1", description: "This is marker 1" },
-        { position: { lat: -41.2875, lng: 174.7742 }, id: 2, name: "Marker 2", description: "This is marker 2" },
-        { position: { lat: -41.2871, lng: 174.7779 }, id: 3, name: "Marker 3", description: "This is marker 3" }
-      ]);
+    categoryClickHandler: function(id, value) {
+      this.getSearchData(id, this.currentRadius);
+    },
+    radiusChanged: function(radius) {
+      this.currentRadius = radius;
+    },
+    getSearchData(categoryId, radius) {
+      this.$http
+        .get(
+          "https://api.foursquare.com/v2/venues/search?ll=-41.2855,174.7772&categoryId=" +
+            categoryId +
+            "&radius=" +
+            radius +
+            "&client_id=" +
+            this.clientId +
+            "&client_secret=" +
+            this.clientSecret +
+            "&v=20190404"
+        )
+        .then(function(data) {
+          this.deleteMarkers();
+          this.currentSearchData = [];
+          let addMarkers = this.addMarkers;
+          let searchData = this.currentSearchData;
+          $.each(data.body.response.venues, function(i, place) {
+            let gMapMarkerInfo = {
+              position: { lat: place.location.lat, lng: place.location.lng },
+              id: place.id,
+              address: place.location.formattedAddress[0],
+              addressLoc: place.location.formattedAddress[2],
+              name: place.name,
+              distance: place.location.distance
+            };
+            searchData.push(gMapMarkerInfo);
+          });
+          this.addMarkers(this.currentSearchData);
+        });
+    },
+    getPlaceDetails(id) {
+      this.$http
+        .get(
+          "https://api.foursquare.com/v2/venues/" +
+            id +
+            "&client_id=" +
+            this.clientId +
+            "&client_secret=" +
+            this.clientSecret +
+            "&v=20190404"
+        )
+        .then(function(data) {
+          console.log(data);
+        });
     }
   }
 };
