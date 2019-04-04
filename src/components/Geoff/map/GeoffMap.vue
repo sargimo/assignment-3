@@ -6,7 +6,7 @@
 
 <script>
 import GeoffMapLoader from "./GeoffMapLoader.vue";
-import { mapSettings } from "./constants/mapSettings.js";
+import { mapSettings } from "../constants/mapSettings.js";
 
 export default {
   components: {

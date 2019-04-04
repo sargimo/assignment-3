@@ -18,9 +18,9 @@
 
 <script>
 import GoogleMapsApiLoader from "google-maps-api-loader";
-import { API_KEY } from "./constants/config.js";
-import { CLIENT_ID } from "./constants/config.js";
-import { CLIENT_SECRET } from "./constants/config.js";
+import { API_KEY } from "../constants/config.js";
+import { CLIENT_ID } from "../constants/config.js";
+import { CLIENT_SECRET } from "../constants/config.js";
 import GeoffMapCategories from "./GeoffMapCategories.vue";
 import GeoffPlaceInformation from "./GeoffPlaceInformation.vue";
 

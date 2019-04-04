@@ -7,7 +7,7 @@ import Home from "./components/Home.vue";
 
 import Geoff from "./components/Geoff/Geoff.vue";
 import GeoffCategories from "./components/Geoff/GeoffCategories.vue"
-import GeoffMap from "./components/Geoff/GeoffMap.vue"
+import GeoffMap from "./components/Geoff/map/GeoffMap.vue"
 import Holly from "./components/Holly/Holly.vue";
 import Jack from "./components/Jack/Jack.vue";
 import Jeremy from "./components/Jeremy/Jeremy.vue";
