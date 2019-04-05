@@ -1,12 +1,14 @@
 <template>
   <transition name="page-fade-in" mode="out-in">
     <div class="categories-container">
-      <div class="category festivals">
-        <div class="cat-title">
-          <h3>FESTIVALS</h3>
-          <p>THE BIGGEST EVENTS IN WELLINGTON</p>
+        <div @click="getCategoryId" class="category festivals">
+            <router-link :to="'/geofffeaturelanding'" exact>
+                <div class="cat-title">
+                <h3 id="0">FESTIVALS</h3>
+                <p>THE BIGGEST EVENTS IN WELLINGTON</p>
+                </div>
+            </router-link>
         </div>
-      </div>
       <div class="category music-venues">
         <div class="cat-title">
           <h3>
@@ -48,9 +50,20 @@
 </template>
 
 <script>
+import festivalData from './constants/festivalData.json'
 export default {
   name: "GeoffCategories",
-  components: {}
+  data: function() {
+      return {
+          categoryObj: ''
+      }
+  },
+  methods: {
+      getCategoryId(evt) {
+        // let category = evt.target.id;
+        this.$router.push({name: "geofffeaturelanding", params: {categoryId: evt.target.id} });
+      }
+  },
 };
 </script>
 

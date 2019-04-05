@@ -1,0 +1,12 @@
+{
+    "festivals": [
+        {
+            "id": 0,
+            "title": "JIM BEAM HOME GROWN",
+            "month": "MARCH ANNUALLY",
+            "location": "WELLINGTON WATERFRONT",
+            "description": "Kiwi music’s biggest party will celebrate its 12th year on March 23rd 2019. Organizers have adjusted the festival site across its five Wellington Waterfront stages to cater for demand as tickets for the event are selling 40% quicker than last year’s record sell out. The additions to the line-up in this announcement mean that another sell out is expected even earlier for the 2019 festival.",
+            "imageUrl": "jbhg image"
+        }
+    ]
+}

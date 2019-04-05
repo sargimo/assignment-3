@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .home-bg {
   background-image: url(../../assets/geoff/home-bg.jpg);
   background-size: cover;
