@@ -4,7 +4,7 @@
       @$categoryClickHandler="categoryClickHandler"
       @$radiusChanged="radiusChanged"
     />
-    <GeoffPlaceInformation/>
+    <GeoffPlaceInformation :placeData="placeData" v-if="placeInfoPanel" />
     <div class="google-map" ref="googleMap"></div>
     <template v-if="Boolean(this.google) && Boolean(this.map)">
       <slot :google="google" :map="map"/>
@@ -46,7 +46,9 @@ export default {
       currentRadius: "1000",
       currentCategoryId: Number,
       currentCategoryName: "",
-      currentSearchData: []
+      currentSearchData: [],
+      placeInfoPanel: false,
+      placeData: ''
     };
   },
 
@@ -73,7 +75,10 @@ export default {
           id: place.id,
           map: myMap,
           name: place.name,
-          description: place.description
+          address: place.address,
+          addressLoc: place.addressLoc,
+          distance: place.distance,
+          category: place.category
         });
         gMarkers.push(newGMarker);
       });
@@ -87,15 +92,17 @@ export default {
       gMarkers = [];
     },
     initMarkerClickListeners(markers) {
-      let myMap = this.map;
+      // let myMap = this.map;
       let that = this;
       // let gMarkers = this.markers;
       // let gMap = this.google.maps;
       $.each(markers, function(i, marker) {
-        marker.addListener("click", function() {
-          myMap.setZoom(15);
-          myMap.setCenter(marker.getPosition());
-          that.getPlaceDetails(marker.id);
+        marker.addListener("click", function(evt) {
+          that.map.setZoom(15);
+          that.map.setCenter(marker.getPosition());
+          // that.getPlaceDetails(marker.id);
+          that.placeInfoPanel = true;
+          that.getPlaceDetails(marker);
         });
       });
     },
@@ -130,28 +137,39 @@ export default {
               address: place.location.formattedAddress[0],
               addressLoc: place.location.formattedAddress[2],
               name: place.name,
-              distance: place.location.distance
+              distance: place.location.distance,
+              category: place.categories[0].name
             };
             searchData.push(gMapMarkerInfo);
           });
           this.addMarkers(this.currentSearchData);
         });
     },
-    getPlaceDetails(id) {
-      this.$http
-        .get(
-          "https://api.foursquare.com/v2/venues/" +
-            id +
-            "&client_id=" +
-            this.clientId +
-            "&client_secret=" +
-            this.clientSecret +
-            "&v=20190404"
-        )
-        .then(function(data) {
-          console.log(data);
-        });
-    }
+      getPlaceDetails(marker) {
+        this.placeData = {
+          position: marker.position,
+          id: marker.id,
+          address: marker.address,
+          name: marker.name,
+          distance: marker.distance,
+          category: marker.category
+        }
+      }
+    // getPlaceDetails(id) {
+    //   this.$http
+    //     .get(
+    //       "https://api.foursquare.com/v2/venues/" +
+    //         id +
+    //         "&client_id=" +
+    //         this.clientId +
+    //         "&client_secret=" +
+    //         this.clientSecret +
+    //         "&v=20190404"
+    //     )
+    //     .then(function(data) {
+    //       console.log(data);
+    //     });
+    // }
   }
 };
 </script>

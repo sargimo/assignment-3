@@ -1,10 +1,10 @@
 <template>
   <transition name="page-fade-in" mode="out-in">
     <div class="categories-container">
-        <div @click="getCategoryId" class="category festivals">
+        <div @click="getCategoryId" class="category festivals" id="0">
             <router-link :to="'/geofffeaturelanding'" exact>
                 <div class="cat-title">
-                <h3 id="0">FESTIVALS</h3>
+                <h3>FESTIVALS</h3>
                 <p>THE BIGGEST EVENTS IN WELLINGTON</p>
                 </div>
             </router-link>
@@ -55,12 +55,10 @@ export default {
   name: "GeoffCategories",
   data: function() {
       return {
-          categoryObj: ''
       }
   },
   methods: {
       getCategoryId(evt) {
-        // let category = evt.target.id;
         this.$router.push({name: "geofffeaturelanding", params: {categoryId: evt.target.id} });
       }
   },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="getCategoryData">test</button>
+        <button @click="getCategoryId">test</button>
         <GeoffFeatureHeroImage />
         <GeoffFeatureDetails />
         <GeoffFeatureMapImage />
@@ -13,6 +13,7 @@ import GeoffFeatureHeroImage from "./GeoffFeatureHeroImage.vue"
 import GeoffFeatureDetails from "./GeoffFeatureDetails.vue"
 import GeoffFeatureMapImage from "./GeoffFeatureMapImage.vue"
 import GeoffFeatureMapIcons from "./GeoffFeatureMapIcons.vue"
+import festivalData from "../constants/festivalData.json"
 
 export default {
   name: "GeoffFeatureLanding",
@@ -24,16 +25,23 @@ export default {
   },
   data: function() {
       return {
-          categoryId: ''
+          categoryId: '',
+          categoryData: [festivalData],
+          selectedCategoryData: []
       }
   },
 //   created: function() {
 //       this.getCategoryData();
 //   },
   methods: {
-      getCategoryData(){
-          let category = this.$route.params.categoryId;
-          console.log(category)
+      getCategoryId() {
+          this.categoryId = this.$route.params.categoryId;
+      }
+  },
+  watch: {
+      categoryId: function() {
+          this.selectedCategoryData = this.categoryData[this.categoryId];
+          ;
       }
   }
 };
