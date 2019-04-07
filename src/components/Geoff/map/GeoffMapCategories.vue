@@ -15,19 +15,38 @@
           <div class="col">
             <button
               @click.prevent="categoryClickHandler"
+              :class="{active: buttonIsActive[0]}"
               id="4bf58dd8d48988d1e5931735"
               value="music venues"
               class="category-btn"
             >MUSIC VENUES</button>
           </div>
           <div class="col">
-            <button @click.prevent="categoryClickHandler" id="4bf58dd8d48988d10d951735" value="record stores" class="category-btn">RECORD STORES</button>
+            <button 
+            @click.prevent="categoryClickHandler" 
+            :class="{active: buttonIsActive[1]}"
+            id="4bf58dd8d48988d10d951735" 
+            value="record stores" 
+            class="category-btn"
+            >RECORD STORES</button>
           </div>
           <div class="col">
-            <button @click.prevent="categoryClickHandler" id="4bf58dd8d48988d1fe941735" value="music stores" class="category-btn">MUSIC STORES</button>
+            <button 
+            @click.prevent="categoryClickHandler" 
+            :class="{active: buttonIsActive[2]}"
+            id="4bf58dd8d48988d1fe941735" 
+            value="music stores" 
+            class="category-btn"
+            >MUSIC STORES</button>
           </div>
           <div class="col">
-            <button @click.prevent="categoryClickHandler" id="4f04b10d2fb6e1c99f3db0be" value="music schools" class="category-btn">MUSIC SCHOOLS</button>
+            <button 
+            @click.prevent="categoryClickHandler" 
+            :class="{active: buttonIsActive[3]}"
+            id="4f04b10d2fb6e1c99f3db0be" 
+            value="music schools" 
+            class="category-btn"
+            >MUSIC SCHOOLS</button>
           </div>
         </div>
       </div>
@@ -42,9 +61,32 @@ export default {
   methods: {
     categoryClickHandler: function(evt) {
       this.$emit("$categoryClickHandler", evt.target.id, evt.target.value);
+      this.setActive(evt);
     },
     radiusChanged: function(evt) {
       this.$emit("$radiusChanged", evt.target.value);
+    },
+    setActive(evt) {
+      let value = evt.target.value;
+      switch (value) {
+        case "music venues":
+          this.buttonIsActive = [true, false, false, false];
+          break;
+        case "record stores":
+          this.buttonIsActive = [false, true, false, false];
+          break;
+        case "music stores":
+          this.buttonIsActive = [false, false, true, false];
+          break;
+        case "music schools":
+          this.buttonIsActive = [false, false, false, true];
+          break;
+      }
+    }
+  },
+  data: function() {
+    return {
+      buttonIsActive: [false, false, false, false]
     }
   }
 };
@@ -76,6 +118,10 @@ export default {
   background-color: transparent;
   padding: 5px 30px;
   border: 1px solid lightgray;
+}
+
+.category-btn:focus {
+  outline: none;
 }
 
 .category-btn.active {
