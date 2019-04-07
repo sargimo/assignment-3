@@ -13,7 +13,7 @@
           <p v-if="gPlaceData.distance"><span class="detail-title">DISTANCE:</span> {{placeData.distance}}m</p>
           <p v-if="gPlaceData.phoneNumber"><span class="detail-title">PHONE NUMBER:</span> {{gPlaceData.phoneNumber}}</p>
           <p v-if="gPlaceData.openNow"><span class="detail-title">OPEN NOW:</span> {{gPlaceData.openNow}}</p>
-          <p v-if="gPlaceData.openTimes"><span class="detail-title">OPEN TIMES:</span> {{gPlaceData.openTimes}}</p>
+          <p v-if="gPlaceData.openTimes"><span class="detail-title">OPEN TIMES:</span> <br>{{gPlaceData.openTimes[0]}}<br>{{gPlaceData.openTimes[1]}}<br>{{gPlaceData.openTimes[2]}}<br>{{gPlaceData.openTimes[3]}}<br>{{gPlaceData.openTimes[4]}}<br>{{gPlaceData.openTimes[5]}}<br>{{gPlaceData.openTimes[6]}} <br></p>
           <p v-if="gPlaceData.userRatings"><span class="detail-title">USER RATINGS:</span> {{gPlaceData.userRatings}}</p>
           <p v-if="gPlaceData.website"><span class="detail-title">WEBSITE:</span> {{gPlaceData.website}}</p>
           <!-- <p v-if="gPlaceData.photos">PHOTOS: {{gPlaceData.photos}}</p> -->
