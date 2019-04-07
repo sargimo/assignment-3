@@ -4,15 +4,15 @@
       @$categoryClickHandler="categoryClickHandler"
       @$radiusChanged="radiusChanged"
     />
-    <GeoffPlaceInformation :placeData="placeData" v-if="placeInfoPanel" />
+    <GeoffPlaceInformation @$closeInfoPanel="closeInfoPanel" :placeData="placeData" :gPlaceData="gPlaceData" v-if="placeInfoPanel" />
     <div class="google-map" ref="googleMap"></div>
     <template v-if="Boolean(this.google) && Boolean(this.map)">
       <slot :google="google" :map="map"/>
     </template>
-    <button
+    <!-- <button
       @click="addMarkers([{position: {lat: -41.2855, lng: 174.7772}}, {position: {lat: -41.2875, lng: 174.7742}}, {position: {lat: -41.2871, lng: 174.7779}}])"
     >add</button>
-    <button @click="deleteMarkers()">delete</button>
+    <button @click="deleteMarkers()">delete</button> -->
   </div>
 </template>
 
@@ -48,12 +48,15 @@ export default {
       currentCategoryName: "",
       currentSearchData: [],
       placeInfoPanel: false,
-      placeData: ''
+      placeData: '',
+      gPlaceId: '',
+      gPlaceData: {}
     };
   },
 
   async mounted() {
     const googleMapApi = await GoogleMapsApiLoader({
+      libraries: ['places'],
       apiKey: this.apiKey
     });
     this.google = googleMapApi;
@@ -102,7 +105,9 @@ export default {
           that.map.setCenter(marker.getPosition());
           // that.getPlaceDetails(marker.id);
           that.placeInfoPanel = true;
-          that.getPlaceDetails(marker);
+          that.storePlaceDetails(marker);
+          that.getGooglePlaceId(that.placeData.name)
+          // that.getGooglePlaceDetails()
         });
       });
     },
@@ -145,7 +150,7 @@ export default {
           this.addMarkers(this.currentSearchData);
         });
     },
-      getPlaceDetails(marker) {
+      storePlaceDetails(marker) {
         this.placeData = {
           position: marker.position,
           id: marker.id,
@@ -154,7 +159,88 @@ export default {
           distance: marker.distance,
           category: marker.category
         }
-      }
+      },
+      getGooglePlaceId(name) {
+        let that = this;
+        // let formattedAddress = this.placeData.address.split(' ').join('+');
+        let query = {
+          query: name,
+          locationBias: {radius: 50000, center: {lat:-41.2865, lng:174.7762} },
+          fields: ['place_id']
+        };
+        let service = new google.maps.places.PlacesService(this.map);
+        service.findPlaceFromQuery(query, function(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            // console.log(results);
+            let id = results[0].place_id;
+            that.getGooglePlaceDetails(id);
+          } else {
+              console.log("foursquare is trash and google is garbage")
+          }
+        });
+        // $.get(
+        //   "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + 
+        //   formattedAddress + 
+        //   "&key=" + 
+        //   this.apiKey 
+        //   )
+        //   .then(function(data) {
+        //     console.log(data)
+        //   })
+      },
+      getGooglePlaceDetails(id){
+        let that = this;
+        let request = {
+          placeId: id,
+          // fields: ['photo', 'user_ratings_total', 'opening_hours', 'website', 'formatted_phone_number', 'reviews', 'rating']
+        }
+        let service = new google.maps.places.PlacesService(this.map);
+        service.getDetails(request, callback); 
+        function callback(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            that.gPlaceData = {}
+            // console.log(place)
+            if(place.formatted_phone_number) {
+              that.gPlaceData.phoneNumber = place.formatted_phone_number
+            }
+            if(place.opening_hours) {
+              that.gPlaceData.openNow = place.opening_hours.open_now
+            }
+            if(place.opening_hours) {
+              that.gPlaceData.openTimes = place.opening_hours.weekday_text
+            }
+            if(place.user_ratings_total) {
+              that.gPlaceData.userRatings = place.user_ratings_total
+            }
+            if(place.website) {
+              that.gPlaceData.website = place.website
+            }
+            if(place.photos) {
+              that.gPlaceData.photos = place.photos
+            }
+            if(place.rating) {
+              that.gPlaceData.rating = place.rating
+            }
+            if(place.reviews) {
+              that.gPlaceData.reviews = place.reviews
+            }
+            // that.gPlaceData = {
+            //   phoneNumber: place.formatted_phone_number,
+            //   openNow: place.opening_hours.open_now,
+            //   openTimes: place.opening_hours.weekday_text,
+            //   userRatings: place.user_ratings_total,
+            //   website: place.website,
+            //   photos: place.photos,
+            //   rating: place.rating,
+            //   reviews: place.reviews
+            // }
+            // console.log(that.gPlaceData)
+          } 
+        };
+      },
+      closeInfoPanel() {
+        this.placeInfoPanel = false;
+      },
     // getPlaceDetails(id) {
     //   this.$http
     //     .get(
@@ -175,8 +261,8 @@ export default {
 </script>
 
 <style scoped>
-.google-map {
-  width: 100vw;
-  min-height: 100vh;
-}
+  .google-map {
+    width: 100vw;
+    min-height: 100vh;
+  }
 </style>
