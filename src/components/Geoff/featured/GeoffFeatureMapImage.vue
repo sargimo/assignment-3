@@ -1,11 +1,11 @@
 <template>
-    <p>Map image</p>
+    <p></p>
 </template>
 
 <script>
 export default {
   name: "GeoffFeatureMapImage",
-  components: {}
+  components: {},
 };
 </script>
 

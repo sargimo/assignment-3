@@ -140,7 +140,7 @@ export default {
               position: { lat: place.location.lat, lng: place.location.lng },
               id: place.id,
               address: place.location.formattedAddress[0],
-              addressLoc: place.location.formattedAddress[2],
+              addressLoc: place.location.formattedAddress[1],
               name: place.name,
               distance: place.location.distance,
               category: place.categories[0].name
@@ -199,7 +199,6 @@ export default {
         function callback(place, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             that.gPlaceData = {}
-            // console.log(place)
             if(place.formatted_phone_number) {
               that.gPlaceData.phoneNumber = place.formatted_phone_number
             }
@@ -209,8 +208,14 @@ export default {
             if(place.opening_hours) {
               that.gPlaceData.openTimes = place.opening_hours.weekday_text
             }
+            if(place.formatted_address) {
+              that.gPlaceData.address = place.formatted_address
+            }
             if(place.user_ratings_total) {
               that.gPlaceData.userRatings = place.user_ratings_total
+            }
+            if(place.distance) {
+              that.gPlaceData.distance = place.distance
             }
             if(place.website) {
               that.gPlaceData.website = place.website

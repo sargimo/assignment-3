@@ -1,0 +1,39 @@
+{
+    "venues": [
+        {
+            "id": "0",
+            "title": "Meow",
+            "location": "9 EDWARD ST, TE ARO",
+            "description": "From hosting their own jazz festival, to nights with a distinctly rock ‘n’ roll vibe, Meow is the place to be on any day of the week. A restaurant bar during the day, Meow also boasts an extensive calendar of events. Their intimate venue backs onto floor to ceiling windows that cast the performers in striking silhouettes and evokes the open and creative space of an art studio. The venue is spacious with minimal furnishing and high ceilings where you can really immerse yourself in the local talent on show.",
+            "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
+            "website": "http://www.welovemeow.co.nz/",
+            "email": "events@meow.nz",
+            "facebook": "https://www.facebook.com/meownz/",
+            "instagram": "https://www.instagram.com/meowedwardst/",
+            "position" : "{ lat: -41.290649, lng: 174.774796 }",
+            "phoneNumber": "04-385 8883"
+            
+        },
+        {
+            "id": "1",
+            "title": "SAN FRAN",
+            "location": "171 CUBA STREET",
+            "description": "San Fran in Wellington is a venue that shows genuine love for great service and live music. Though traditionally a more rock ‘n’ roll establishment, in recent years it has broadened its demographic to welcome a far more diverse range of musical genres. The San Fran also serves pizzas, snacks, and an array of beverages.",
+            "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
+            "website": "http://sanfran.co.nz/",
+            "email": "ziggy@sanfran.co.nz",
+            "facebook": "https://www.facebook.com/pg/SanFranNZ/",
+            "instagram": "https://www.instagram.com/sanfranvenue/"
+        },
+        {
+            "id": "2",
+            "title": "VALHALLA TAVERN",
+            "location": "MICHAEL FOWLER CENTRE",
+            "description": "Get ready to find your jazz hot spot! From a sold-out crowd to a cosy booth for two, the cool capital comes out to play at this mid-winter musical feast, featuring some of music’s finest national and international artists.",
+            "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
+            "website": "info@jazzfestival.co.nz",
+            "facebook": "https://www.facebook.com/welljazzfest/",
+            "instagram": "https://www.instagram.com/welljazzfest/"
+        }
+    ]
+}

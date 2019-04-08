@@ -6,7 +6,34 @@
             "month": "MARCH ANNUALLY",
             "location": "WELLINGTON WATERFRONT",
             "description": "Kiwi music’s biggest party will celebrate its 12th year on March 23rd 2019. Organizers have adjusted the festival site across its five Wellington Waterfront stages to cater for demand as tickets for the event are selling 40% quicker than last year’s record sell out. The additions to the line-up in this announcement mean that another sell out is expected even earlier for the 2019 festival.",
-            "imageUrl": "jbhg image"
+            "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
+            "website": "https://www.homegrown.net.nz/",
+            "email": "info@homegrown.net.nz",
+            "facebook": "https://www.facebook.com/pages/Homegrown/159983710685042/",
+            "instagram": "https://www.instagram.com/jimbeamhomegrown/"
+        },
+        {
+        "id": "1",
+        "title": "COASTELLA",
+        "month": "FEBRUARY ANNUALLY",
+        "location": "PARAPARAUMU",
+        "description": "New Zealand’s most talked about boutique music festival Coastella returns to the stunning Kapiti Coast with an eclectic trans tasman lineup. Taking place on Saturday 23rd February, the 2019 programme will showcase a diverse range of acts, from jungle-rock-blues and slow-burning soul to psych-rock jams and up-and-coming indie pop.",
+        "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
+        "website": "https://www.coastella.co.nz/",
+        "email": "info@coastella.co.nz",
+        "facebook": "https://www.facebook.com/coastella/",
+        "instagram": "https://www.instagram.com/coastella/"
+        },
+        {
+        "id": "2",
+        "title": "WELLINGTON JAZZ FESTIVAL",
+        "month": "JUNE ANNUALLY",
+        "location": "MICHAEL FOWLER CENTRE",
+        "description": "Get ready to find your jazz hot spot! From a sold-out crowd to a cosy booth for two, the cool capital comes out to play at this mid-winter musical feast, featuring some of music’s finest national and international artists.",
+        "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
+        "website": "info@jazzfestival.co.nz",
+        "facebook": "https://www.facebook.com/welljazzfest/",
+        "instagram": "https://www.instagram.com/welljazzfest/"
         }
     ]
 }

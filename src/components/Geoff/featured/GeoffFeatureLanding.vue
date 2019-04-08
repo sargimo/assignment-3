@@ -1,10 +1,10 @@
 <template>
     <div>
         <button @click="getCategoryId">test</button>
-        <GeoffFeatureHeroImage />
-        <GeoffFeatureDetails />
-        <GeoffFeatureMapImage />
-        <GeoffFeatureMapIcons />
+        <GeoffFeatureHeroImage :index="selectedIndex" :source="selectedCategoryData" />
+        <GeoffFeatureDetails :index="selectedIndex" :source="selectedCategoryData" />
+        <GeoffFeatureMapImage :source="selectedCategoryData" />
+        <GeoffFeatureMapIcons :source="selectedCategoryData" />
     </div>
 </template>
 
@@ -26,8 +26,9 @@ export default {
   data: function() {
       return {
           categoryId: '',
-          categoryData: [festivalData],
-          selectedCategoryData: []
+          categoryData: [festivalData.festivals],
+          selectedCategoryData: '',
+          selectedIndex: 0
       }
   },
 //   created: function() {
@@ -41,7 +42,6 @@ export default {
   watch: {
       categoryId: function() {
           this.selectedCategoryData = this.categoryData[this.categoryId];
-          ;
       }
   }
 };
