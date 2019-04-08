@@ -58,7 +58,7 @@ export default {
       gPlaceId: "",
       gPlaceData: {},
       featureData: [musicVenueData.venues],
-      featuredMarkers: Object
+      featuredMarkers: []
     };
   },
 
@@ -76,32 +76,32 @@ export default {
     initializeMap() {
       const mapContainer = this.$refs.googleMap;
       this.map = new this.google.maps.Map(mapContainer, {
-      zoom: 13,
-      minZoom: 10,
-      maxZoom: 25,
-      center: { lat: -41.2865, lng: 174.7762 },
-      mapTypeControl: false,
-      fullscreenControl: true,
-      fullscreenControlOptions: {
-        position: google.maps.ControlPosition.BOTTOM_LEFT
-      },
-      streetViewControl: true,
-      streetViewControlOptions: {
-        position: google.maps.ControlPosition.LEFT_CENTER
-      },
-      zoomControl: true,
-      zoomControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-      },
+        zoom: 13,
+        minZoom: 10,
+        maxZoom: 25,
+        center: { lat: -41.2865, lng: 174.7762 },
+        mapTypeControl: false,
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+          position: google.maps.ControlPosition.BOTTOM_LEFT
+        },
+        streetViewControl: true,
+        streetViewControlOptions: {
+          position: google.maps.ControlPosition.LEFT_CENTER
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.LEFT_BOTTOM
+        }
       });
       this.map.getStreetView().setOptions({
-      addressControlOptions: {
-        position: google.maps.ControlPosition.BOTTOM_LEFT
-      },
-      panControlOptions: {
-        position: google.maps.ControlPosition.BOTTOM_LEFT
-      }
-    });
+        addressControlOptions: {
+          position: google.maps.ControlPosition.BOTTOM_LEFT
+        },
+        panControlOptions: {
+          position: google.maps.ControlPosition.BOTTOM_LEFT
+        }
+      });
     },
     addMarkers(places) {
       let myMap = this.map;
@@ -130,10 +130,7 @@ export default {
       gMarkers = [];
     },
     initMarkerClickListeners(markers) {
-      // let myMap = this.map;
       let that = this;
-      // let gMarkers = this.markers;
-      // let gMap = this.google.maps;
       $.each(markers, function(i, marker) {
         marker.addListener("click", function(evt) {
           that.map.setZoom(15);
@@ -142,8 +139,8 @@ export default {
           that.placeInfoPanel = true;
           that.storePlaceDetails(marker);
           that.getGooglePlaceId(that.placeData.name);
-          // that.getGooglePlaceId("The Rogue & Vagabond")
-          that.getGooglePlaceDetails()
+          // that.getGooglePlaceId("san fran")
+          // that.getGooglePlaceDetails()
         });
       });
     },
@@ -157,21 +154,31 @@ export default {
     showFeatureMarkers(key) {
       let that = this;
       let category = this.featureData[key];
-      $.each(category, function(i, marker){
+      $.each(category, function(i, marker) {
+        let request = {
+          placeId: category[i].mapId
+        };
         let service = new google.maps.places.PlacesService(that.map);
-        service.getDetails(marker.mapId, callback);
+        service.getDetails(request, callback);
         function callback(place, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
-            let newGMarker = new gMap.Marker({
-            position: marker.position,
-            // id: marker.id,
-            // map: that.map,
-            // name: marker.name,
-            // address: marker.address,
-            // addressLoc: marker.addressLoc,
-            // category: marker.category
-        });
-            that.featuredMarkers.push(newGMarker)
+            let newGMarker = new that.google.maps.Marker({
+              position: place.geometry.location,
+              id: place.id,
+              map: that.map,
+              name: marker.name,
+              address: marker.location,
+              addressLoc: place.address_components[3].short_name,
+              category: marker.category
+            });
+            newGMarker.addListener("click", function(evt) {
+              that.map.setZoom(15);
+              that.map.setCenter(newGMarker.getPosition());
+              that.placeInfoPanel = true;
+              that.storePlaceDetails(marker);
+              that.getGooglePlaceId(that.placeData.name);
+            });
+            that.featuredMarkers.push(newGMarker);
           }
         }
       });
@@ -233,7 +240,7 @@ export default {
       let service = new google.maps.places.PlacesService(this.map);
       service.findPlaceFromQuery(query, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          // console.log(results);
+          console.log(results);
           let id = results[0].place_id;
           that.getGooglePlaceDetails(id);
         } else {
@@ -256,11 +263,11 @@ export default {
         placeId: id
         // fields: ['photo', 'user_ratings_total', 'opening_hours', 'website', 'formatted_phone_number', 'reviews', 'rating']
       };
-      // console.log(id);
+      console.log(id);
       let service = new google.maps.places.PlacesService(this.map);
       service.getDetails(request, callback);
       function callback(place, status) {
-        console.log(place)
+        console.log(place);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           that.gPlaceData = {};
           if (place.formatted_phone_number) {
@@ -309,7 +316,6 @@ export default {
     },
     closeInfoPanel() {
       this.placeInfoPanel = false;
-
     }
     // getPlaceDetails(id) {
     //   this.$http
