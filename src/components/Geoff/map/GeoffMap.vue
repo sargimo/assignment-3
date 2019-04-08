@@ -1,6 +1,6 @@
 <template>
   <div>
-    <GeoffMapLoader :mapConfig="mapConfig"/>
+    <GeoffMapLoader/>
   </div>
 </template>
 
@@ -17,13 +17,13 @@ export default {
   //           API_KEY: API_KEY
   //       }
   //   },
-  computed: {
-    mapConfig() {
-      return {
-        ...mapSettings,
-        center: { lat: -41.2865, lng: 174.7762 }
-      };
-    }
-  }
+  // computed: {
+  //   mapConfig() {
+  //     return {
+  //       ...mapSettings,
+  //       center: { lat: -41.2865, lng: 174.7762 }
+  //     };
+  //   }
+  // }
 };
 </script>

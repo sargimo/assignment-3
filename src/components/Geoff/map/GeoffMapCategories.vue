@@ -17,6 +17,7 @@
               @click.prevent="categoryClickHandler"
               :class="{active: buttonIsActive[0]}"
               id="4bf58dd8d48988d1e5931735"
+              ref="0"
               value="music venues"
               class="category-btn"
             >MUSIC VENUES</button>
@@ -26,6 +27,7 @@
             @click.prevent="categoryClickHandler" 
             :class="{active: buttonIsActive[1]}"
             id="4bf58dd8d48988d10d951735" 
+            ref="1"
             value="record stores" 
             class="category-btn"
             >RECORD STORES</button>
@@ -34,7 +36,8 @@
             <button 
             @click.prevent="categoryClickHandler" 
             :class="{active: buttonIsActive[2]}"
-            id="4bf58dd8d48988d1fe941735" 
+            id="4bf58dd8d48988d1fe941735"
+            ref="2" 
             value="music stores" 
             class="category-btn"
             >MUSIC STORES</button>
@@ -43,7 +46,8 @@
             <button 
             @click.prevent="categoryClickHandler" 
             :class="{active: buttonIsActive[3]}"
-            id="4f04b10d2fb6e1c99f3db0be" 
+            id="4f04b10d2fb6e1c99f3db0be"
+            ref="3" 
             value="music schools" 
             class="category-btn"
             >MUSIC SCHOOLS</button>
@@ -60,11 +64,12 @@ export default {
 
   methods: {
     categoryClickHandler: function(evt) {
-      this.$emit("$categoryClickHandler", evt.target.id, evt.target.value);
+      console.log(evt)
+      this.$emit("$categoryClickHandler", evt.target.id, evt.target.value, evt.target.ref);
       this.setActive(evt);
     },
     radiusChanged: function(evt) {
-      this.$emit("$radiusChanged", evt.target.value);
+      this.$emit("$radiusChanged", evt.target.value,);
     },
     setActive(evt) {
       let value = evt.target.value;

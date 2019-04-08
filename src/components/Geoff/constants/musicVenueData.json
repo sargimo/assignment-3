@@ -2,7 +2,7 @@
     "venues": [
         {
             "id": "0",
-            "title": "Meow",
+            "name": "Meow",
             "location": "9 EDWARD ST, TE ARO",
             "description": "From hosting their own jazz festival, to nights with a distinctly rock ‘n’ roll vibe, Meow is the place to be on any day of the week. A restaurant bar during the day, Meow also boasts an extensive calendar of events. Their intimate venue backs onto floor to ceiling windows that cast the performers in striking silhouettes and evokes the open and creative space of an art studio. The venue is spacious with minimal furnishing and high ceilings where you can really immerse yourself in the local talent on show.",
             "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
@@ -10,30 +10,52 @@
             "email": "events@meow.nz",
             "facebook": "https://www.facebook.com/meownz/",
             "instagram": "https://www.instagram.com/meowedwardst/",
-            "position" : "{ lat: -41.290649, lng: 174.774796 }",
-            "phoneNumber": "04-385 8883"
-            
+            "phoneNumber": "04-385 8883",
+            "mapId": "ChIJy4pWytevOG0Rwnic3zc5ASA",
+            "category": "Music Venue"
         },
         {
             "id": "1",
-            "title": "SAN FRAN",
+            "name": "SAN FRAN",
             "location": "171 CUBA STREET",
             "description": "San Fran in Wellington is a venue that shows genuine love for great service and live music. Though traditionally a more rock ‘n’ roll establishment, in recent years it has broadened its demographic to welcome a far more diverse range of musical genres. The San Fran also serves pizzas, snacks, and an array of beverages.",
             "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
             "website": "http://sanfran.co.nz/",
             "email": "ziggy@sanfran.co.nz",
             "facebook": "https://www.facebook.com/pg/SanFranNZ/",
-            "instagram": "https://www.instagram.com/sanfranvenue/"
+            "instagram": "https://www.instagram.com/sanfranvenue/",
+            "phoneNumber": "04-385 8883",
+            "mapId": "ChIJy4pWytevOG0Rwnic3zc5ASA",
+            "category": "Music Venue"
         },
         {
             "id": "2",
-            "title": "VALHALLA TAVERN",
+            "name": "VALHALLA TAVERN",
             "location": "MICHAEL FOWLER CENTRE",
-            "description": "Get ready to find your jazz hot spot! From a sold-out crowd to a cosy booth for two, the cool capital comes out to play at this mid-winter musical feast, featuring some of music’s finest national and international artists.",
+            "description": "Valhalla - (formerly Medusa/Hole In The Wall/Valve) is Wellington's only dedicated alternative music venue. Located at 154 Vivian Street, between Cuba Street and Marion Street, Valhalla is a self-contained mead hall of the Gods in the heart of the city. A subtly Norse themed bunker with a punk rock drinking ethic.",
             "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
-            "website": "info@jazzfestival.co.nz",
-            "facebook": "https://www.facebook.com/welljazzfest/",
-            "instagram": "https://www.instagram.com/welljazzfest/"
+            "website": "https://www.valhallatavern.com/",
+            "email": "valhalla.tavern@gmail.com",
+            "facebook": "http://www.facebook.com/ValhallaMusicVenue",
+            "instagram": "https://www.instagram.com/explore/locations/1694846420816507/valhalla-tavern/",
+            "phoneNumber": "0220524302",
+            "mapId": "ChIJ4zvqN9ivOG0RniLyeYwE3lU",
+             "category": "Music Venue"
+        },
+        {
+            "id": "3",
+            "name": "THE ROGUE & VAGABOND",
+            "location": "18 Garrett St, Te Aro",
+            "description": "Attention dog lovers, The Rogue & Vagabond is definitely the place for you, as they openly welcome dogs and their owners to relax and lounge outside of their venue on Cuba Street. With various draft beers on tap, many delicious snacks, and a wide array of live musical acts performing all genres, there’s little not to like here. The décor of the venue is psychedelic and colorful, creating a fun and expressive space.",
+            "imageUrl": "https://i.ibb.co/LdpFfKh/jbhomegrown.jpg",
+            "website": "http://www.rogueandvagabond.co.nz/",
+            "email": "valhalla.tavern@gmail.com",
+            "facebook": "http://www.facebook.com/rogueandvagabond",
+            "instagram": "https://www.instagram.com/rogueandvagabond/?hl=en/",
+            "phoneNumber": "04 3812321",
+            "mapId": "ChIJmwfKGdivOG0R9eTCVFOngnU",
+            "category": "Music Venue"
         }
+
     ]
 }

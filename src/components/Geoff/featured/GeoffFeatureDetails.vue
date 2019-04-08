@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>{{source[index].title}}</h1>
+    <h1>{{source[index].name}}</h1>
     <p>{{source[index].month}} - {{source[index].location}}</p>
     <p>{{source[index].description}}</p>
   </div>
